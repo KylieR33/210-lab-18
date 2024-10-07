@@ -1,5 +1,4 @@
 #include <iostream>
-#include <iomanip>
 #include <string>
 #include <vector>
 using namespace std;
@@ -20,6 +19,8 @@ Node* inserttail(Node* head, float new_value);
 float average(Node* head);
 
 int main(){
+    int count = 0;
+    int total = 0;
     int choice;
     float rate;
     string comment;
@@ -49,6 +50,15 @@ int main(){
    else {
        cout << "";
    }
+   
+   cout << endl;
+   cout << "Outputting all reviews: " << endl;
+   printlist(head);
+   for (int i = 0; i < word.size(); i++){
+       int count = 1;
+        cout <<"Comments #" <<count++ << ": " << word[i] << endl;
+   }
+   cout << "Average: " << average(head) << endl;
 
    return 0;
 }
@@ -64,4 +74,26 @@ Node* inserttail(Node* head, float new_value) {
     }
     last->next = new_node;
     return head;
+}
+void printlist(Node * hd){
+    int count = 1;
+    Node * current = hd;
+    while (current != nullptr) {
+        cout << "Review #" << count++ << ": " <<  current->value << endl;
+        current = current->next;
+    
+    }
+}
+float average(Node* head){
+    float sum = 0;
+    int add = 0;
+    float average = 0.0;
+    Node* current = head;
+    while (current != NULL) {
+        add++;
+        sum += current->value;
+        current = current->next;
+    }
+    average = (double)sum / add;
+    return average;
 }
